@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colour Renovation - Interior & Exterior Painting Services</title>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             margin: 0;
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -396,6 +399,29 @@
     <!-- html5-qrcode library for QR code scan -->
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <script>
+    // Smooth scroll for anchor links in navbar
+    document.querySelectorAll('.nav-link').forEach(function(link) {
+        // Only scroll for internal sections (not external .html)
+        if (link.getAttribute('href').startsWith('#')) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').replace('#', '');
+                const target = document.getElementById(targetId);
+                if (target) {
+                    // Get navbar height for offset (if sticky)
+                    const navbar = document.getElementById('navbar');
+                    let navHeight = navbar ? navbar.offsetHeight : 0;
+                    // Get target position
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
+    });
+
     // Hide navbar when scrolling down, show only at top of page
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', function() {
