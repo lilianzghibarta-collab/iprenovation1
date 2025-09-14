@@ -80,82 +80,87 @@
             height: 100%;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 80px auto 0 auto;
-            background: rgba(44, 44, 44, 0.93);
-            border-radius: 18px;
+            background: rgba(36, 36, 36, 0.96);
+            border-radius: 24px;
             box-shadow: 0 8px 28px rgba(0,0,0,0.45);
-            padding: 54px 48px;
+            padding: 38px 24px 56px 24px;
             color: #eee;
         }
-        h1, h2 {
+        h2 {
             color: #ffd700;
             font-weight: 800;
-            margin-bottom: 18px;
-            font-size: 2.4em;
+            margin-bottom: 28px;
+            font-size: 2em;
             text-align: center;
             letter-spacing: 1px;
         }
-        .section {
-            margin-bottom: 60px;
-            scroll-margin-top: 110px;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin: 0 auto;
         }
-        .project-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 36px;
-            justify-content: center;
-            margin-bottom: 40px;
-        }
-        .project-card {
-            background: rgba(30, 30, 30, 0.88);
+        .gallery-item {
+            background: #1a1a1af8;
             border-radius: 18px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.45);
-            max-width: 370px;
-            min-width: 250px;
-            margin-bottom: 10px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.40);
             overflow: hidden;
-            color: #eee;
-            display: flex;
-            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
         }
-        .project-image {
+        .gallery-item:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 32px rgba(0,0,0,0.65);
+        }
+        .gallery-img {
             width: 100%;
-            max-height: 230px;
+            height: 320px;
             object-fit: cover;
-            border-top-left-radius: 18px;
-            border-top-right-radius: 18px;
+            display: block;
+            border-radius: 18px;
+            transition: filter 0.22s;
+            filter: brightness(0.96) contrast(1.08) saturate(1.05);
         }
-        .project-content {
-            padding: 18px;
-            font-size: 1.1em;
+        .gallery-item:hover .gallery-img {
+            filter: brightness(1.02) contrast(1.1) saturate(1.12);
         }
-        .project-title {
-            color: #ffd700;
-            font-size: 1.25em;
-            margin-bottom: 10px;
+        .contact-section {
+            margin-top: 56px;
+            text-align: center;
+        }
+        .whatsapp-badge {
+            display: inline-block;
+            padding: 6px 18px 6px 10px;
+            background: #25d366;
+            color: #fff;
             font-weight: bold;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 2px 7px rgba(0,0,0,0.25);
+            margin-left: 0;
+            margin-top: 8px;
+            transition: background 0.2s;
+            font-size: 1.15em;
         }
-        .project-desc {
-            margin-bottom: 10px;
-            color: #eaeaea;
+        .whatsapp-badge svg {
+            vertical-align: middle;
+            margin-right: 9px;
+            margin-top: -2px;
         }
-        @media (max-width: 950px) {
-            .container { padding: 18px; }
-            h1, h2 { font-size: 1.5em; }
-            .company-name { font-size: 1.2em; }
-            .logo-svg { width: 36px; height: 36px; }
-            .project-gallery { gap: 16px; }
+        .whatsapp-badge:hover {
+            background: #20ba5a;
         }
-        @media (max-width: 600px) {
-            .navbar { flex-direction: column; height: auto; padding: 0 8px; }
-            .nav-section { padding: 10px 0; font-size: 1em; }
-            .container { padding: 8px; margin: 20px auto 0 auto;}
-            h1, h2 { font-size: 1.1em;}
-            .logo-section { gap: 6px;}
-            .company-name { font-size: 0.95em; letter-spacing: 1px;}
-            .project-card { min-width: 90vw; max-width: 98vw; }
-            .project-image { max-height: 160px; }
+        @media (max-width: 1200px) {
+            .container { padding: 16px; }
+            .gallery-img { height: 220px; }
+        }
+        @media (max-width: 700px) {
+            .container { padding: 8px; }
+            h2 { font-size: 1.1em; }
+            .gallery-grid { grid-template-columns: 1fr; gap: 14px; }
+            .gallery-img { height: 140px; }
         }
     </style>
 </head>
@@ -164,7 +169,6 @@
     <div class="navbar" id="navbar">
         <div class="logo-section">
             <a href="index.html" class="logo-link">
-                <!-- SVG Logo Painting Theme -->
                 <svg class="logo-svg" viewBox="0 0 64 64" fill="none">
                     <ellipse cx="32" cy="32" rx="30" ry="30" fill="#ffd700" opacity="0.7"/>
                     <rect x="18" y="38" width="28" height="10" rx="5" fill="#222"/>
@@ -183,79 +187,24 @@
         <div class="nav-section"><a class="nav-link" href="index.html#contact" id="nav-contact">Contact</a></div>
     </div>
     <div class="container">
-        <div class="section">
-            <h2>Completed Projects</h2>
-            <p style="text-align:center; font-size:1.15em; margin-bottom:30px;">
-                Discover our real work! Here are some actual photos from our <b>Interior & Exterior Painting Services</b> projects.
-            </p>
-            <div class="project-gallery">
-                <!-- Real Project 1 -->
-                <div class="project-card">
-                    <img class="project-image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Painted Living Room">
-                    <div class="project-content">
-                        <div class="project-title">Living Room Transformation</div>
-                        <div class="project-desc">
-                            Fresh, modern paint for a cozy family living room. Quality finish with attention to every detail.
-                        </div>
-                    </div>
-                </div>
-                <!-- Real Project 2 -->
-                <div class="project-card">
-                    <img class="project-image" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" alt="Bedroom Painting">
-                    <div class="project-content">
-                        <div class="project-title">Bedroom Makeover</div>
-                        <div class="project-desc">
-                            Soft neutral colors for a relaxing bedroom atmosphere. Professional preparation and smooth surfaces.
-                        </div>
-                    </div>
-                </div>
-                <!-- Real Project 3 -->
-                <div class="project-card">
-                    <img class="project-image" src="https://images.unsplash.com/photo-1504457046789-31c8e51c4ad3?auto=format&fit=crop&w=800&q=80" alt="Exterior House Painting">
-                    <div class="project-content">
-                        <div class="project-title">Exterior House Painting</div>
-                        <div class="project-desc">
-                            Full exterior painting for enhanced curb appeal and weather protection. Durable paint and expert application.
-                        </div>
-                    </div>
-                </div>
-                <!-- Real Project 4 -->
-                <div class="project-card">
-                    <img class="project-image" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80" alt="Kitchen Painting">
-                    <div class="project-content">
-                        <div class="project-title">Kitchen Refresh</div>
-                        <div class="project-desc">
-                            Bright kitchen walls and trim for a clean, inviting space. Fast turnaround and premium materials.
-                        </div>
-                    </div>
-                </div>
-                <!-- Real Project 5 -->
-                <div class="project-card">
-                    <img class="project-image" src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80" alt="Decorative Wall Painting">
-                    <div class="project-content">
-                        <div class="project-title">Decorative Wall Painting</div>
-                        <div class="project-desc">
-                            Creative accents and unique finishes for personalized spaces. Our team brings color and life to every project.
-                        </div>
-                    </div>
-                </div>
-                <!-- Real Project 6 -->
-                <div class="project-card">
-                    <img class="project-image" src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" alt="Office Painting">
-                    <div class="project-content">
-                        <div class="project-title">Office Painting</div>
-                        <div class="project-desc">
-                            Clean and motivating workspace with fresh, professional colors. Minimal disruption for your business.
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <h2>Completed Projects - Interior & Exterior Painting</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="Renovated living room"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=800&q=80" alt="Modern kitchen painting"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1503389152951-9c3b1cf1d93a?auto=format&fit=crop&w=800&q=80" alt="Bedroom fresh paint"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" alt="Hallway renovation"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" alt="Office painting"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80" alt="Kitchen painting"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Exterior house painting"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80" alt="Decorative wall painting"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=800&q=80" alt="Facade restoration"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1556912998-6e7766a2c87b?auto=format&fit=crop&w=800&q=80" alt="Fresh painted corridor"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" alt="Bright painted room"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Exterior wall painting"></div>
         </div>
-        <!-- Contact Section -->
-        <div class="section" id="contact">
+        <div class="contact-section">
             <h2 id="contact-title">Contact</h2>
             <p id="contact-text">
-                Want to work with us? Write or call us:<br>
                 <b>Email:</b> ipcolourrenovation@gmail.com<br>
                 <b>Phone:</b> 0874601219<br>
                 <b>Address:</b> Dublin, Ireland<br>
