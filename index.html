@@ -28,6 +28,7 @@
             position: sticky;
             top: 0;
             z-index: 999;
+            transition: transform 0.3s;
         }
         .logo-section {
             display: flex;
@@ -207,7 +208,7 @@
 </head>
 <body>
     <div class="overlay"></div>
-    <div class="navbar">
+    <div class="navbar" id="navbar">
         <div class="logo-section">
             <a href="index.html" class="logo-link">
                 <!-- SVG Logo Painting Theme -->
@@ -299,5 +300,18 @@
             </p>
         </div>
     </div>
+    <script>
+    // Hide navbar when scrolling down, show only at top of page
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 10) {
+            navbar.style.transform = 'translateY(-100%)';
+            navbar.style.transition = 'transform 0.3s';
+        } else {
+            navbar.style.transform = 'translateY(0)';
+        }
+    });
+    </script>
 </body>
 </html>
