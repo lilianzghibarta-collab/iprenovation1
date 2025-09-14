@@ -163,7 +163,7 @@
             margin: 12px 0 6px 0;
             color: #ffd700;
         }
-        .form-section input, .form-section select {
+        .form-section input, .form-section select, .form-section textarea {
             width: 100%;
             padding: 8px 10px;
             border-radius: 7px;
@@ -206,6 +206,46 @@
         }
         .whatsapp-badge:hover {
             background: #20ba5a;
+        }
+        #whatsapp-float-btn {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 9999;
+            background: #25d366;
+            color: #fff;
+            border-radius: 50%;
+            width: 68px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+            animation: whatsapp-vibrate 1.2s infinite;
+        }
+        #whatsapp-float-btn:hover {
+            background: #20ba5a;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+        }
+        #whatsapp-float-btn svg {
+            width: 38px;
+            height: 38px;
+            display: block;
+        }
+        @keyframes whatsapp-vibrate {
+          0% { transform: translate(0,0);}
+          10% { transform: translate(-2px,2px);}
+          20% { transform: translate(-3px,-2px);}
+          30% { transform: translate(3px,2px);}
+          40% { transform: translate(2px,-2px);}
+          50% { transform: translate(-2px,2px);}
+          60% { transform: translate(-3px,-2px);}
+          70% { transform: translate(3px,2px);}
+          80% { transform: translate(2px,-2px);}
+          90% { transform: translate(-2px,2px);}
+          100% { transform: translate(0,0);}
         }
         @media (max-width: 950px) {
             .container { padding: 18px; }
@@ -329,6 +369,8 @@
                 <input type="text" id="call-name" name="call-name" placeholder="Your name" required>
                 <label for="call-time">Preferred time for call</label>
                 <input type="time" id="call-time" name="call-time" required>
+                <label for="call-message">What work do you need or what question do you have for us?</label>
+                <textarea id="call-message" name="call-message" rows="4" placeholder="Describe your project, request, or question..." style="border-radius:10px; border:1px solid #777; padding:10px; width:100%;"></textarea>
                 <button type="submit">Request a Call</button>
             </form>
         </div>
@@ -347,6 +389,9 @@
                 </a>
             </p>
         </div>
+        <a id="whatsapp-float-btn" href="https://wa.me/353874601219" target="_blank" title="Contact us on WhatsApp">
+            <svg viewBox="0 0 32 32" width="38" height="38"><circle fill="#25d366" cx="16" cy="16" r="16"/><path fill="#fff" d="M23.4 8.6c-1.6-1.6-3.7-2.5-5.9-2.5-4.7 0-8.5 3.8-8.5 8.5 0 1.5.4 3.1 1.2 4.4l-1.3 4.7 4.8-1.3c1.2.7 2.6 1 4 1 4.7 0 8.5-3.8 8.5-8.5 0-2.2-.9-4.3-2.5-5.9zm-5.9 14.1c-1.3 0-2.6-.3-3.8-.9l-.3-.2-3.2.9.9-3.1-.2-.3c-.7-1.2-1-2.5-1-3.8 0-4 3.2-7.3 7.3-7.3 2 0 3.8.8 5.2 2.2 1.4 1.4 2.2 3.2 2.2 5.2 0 4-3.2 7.3-7.3 7.3zm4-5.5c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.6.1-.2.3-.7.7-.8.8-.2.2-.3.2-.6.1s-1.1-.4-2.1-1.1c-.8-.7-1.5-1.6-1.7-1.8-.2-.3 0-.5.1-.6.1-.1.2-.3.3-.4.1-.1.1-.2.2-.3.1-.2.1-.3 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.7 1.2 2.9c.2.2 2 3.1 4.9 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.2-.6 1.3-1.1.1-.5.1-.9.1-1.1 0-.2-.2-.3-.4-.4z"/></svg>
+        </a>
     </div>
     <!-- html5-qrcode library for QR code scan -->
     <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
