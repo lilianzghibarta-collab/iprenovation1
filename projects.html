@@ -299,6 +299,23 @@
         @media (max-width: 600px) {
             .modal-arrow { font-size: 1.3em; padding: 3px 8px;}
         }
+        footer {
+            width: 100%;
+            background: rgba(34,34,34,0.98);
+            color: #bbb;
+            text-align: center;
+            font-size: 1em;
+            padding: 13px 0 10px 0;
+            margin-top: 28px;
+            letter-spacing: 1px;
+        }
+        footer a {
+            color: #ffd700;
+            text-decoration: underline;
+        }
+        @media (max-width:600px) {
+            footer { font-size: 0.95em; padding: 10px 0 9px 0; }
+        }
     </style>
 </head>
 <body>
@@ -361,6 +378,10 @@
         <img class="modal-content" id="modalImg" src="" alt="Enlarged project image">
         <span class="modal-arrow right" id="modalArrowRight">&#8594;</span>
     </div>
+    <footer>
+        © 2024 Lilian Zghibarta. All rights reserved.<br>
+        Email: <a href="mailto:lilian.zghibarta@gmail.com">lilian.zghibarta@gmail.com</a>
+    </footer>
     <script>
     // Smooth scroll for anchor links in navbar
     document.querySelectorAll('.nav-link').forEach(function(link) {
