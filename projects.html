@@ -222,6 +222,53 @@
             }
             .contact-section { font-size: 0.95em; max-width: 99vw; padding: 6px 1vw 10px 1vw; }
         }
+        /* MODAL styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(30,30,30,0.88);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.open { display: flex; }
+        .modal-content {
+            max-width: 96vw;
+            max-height: 80vh;
+            border-radius: 18px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+            background: #222;
+            border: 3px solid #ffd700;
+            animation: modalZoomIn 0.3s;
+        }
+        @keyframes modalZoomIn {
+            from { transform: scale(0.8); opacity: 0;}
+            to { transform: scale(1); opacity: 1;}
+        }
+        .close-modal {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            color: #ffd700;
+            font-size: 2.4em;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2100;
+            background: rgba(30,30,30,0.93);
+            border-radius: 40px;
+            padding: 2px 16px 2px 16px;
+            border: 2px solid #ffd700;
+        }
+        @media (max-width: 900px) {
+            .modal-content { max-width: 99vw; max-height: 75vh; }
+            .close-modal { top: 8px; right: 8px; font-size: 2em; }
+        }
+        @media (max-width: 600px) {
+            .modal-content { max-width: 99vw; max-height: 50vh; }
+            .close-modal { font-size: 1.5em; }
+        }
     </style>
 </head>
 <body>
@@ -277,6 +324,13 @@
             </p>
         </div>
     </div>
+
+    <!-- Modal pentru imagine mărită -->
+    <div id="imgModal" class="modal">
+        <span class="close-modal" id="closeModalBtn">&times;</span>
+        <img class="modal-content" id="modalImg" src="" alt="Enlarged project image">
+    </div>
+
     <script>
     // Mobile: Hide navbar when scrolling down, show only when scrolling up to top
     let lastScrollTop = 0;
@@ -304,6 +358,40 @@
             } else {
                 navbar.style.transform = 'translateY(0)';
             }
+        }
+    });
+
+    // MODAL logic pt. imagine mărită
+    const modal = document.getElementById('imgModal');
+    const modalImg = document.getElementById('modalImg');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    document.querySelectorAll('.gallery-img').forEach(function(img){
+        img.addEventListener('click', function(){
+            modal.classList.add('open');
+            modalImg.src = this.src;
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    closeModalBtn.onclick = function() {
+        modal.classList.remove('open');
+        modalImg.src = "";
+        document.body.style.overflow = '';
+    }
+    // Click pe fundalul modalului închide poza
+    modal.onclick = function(e){
+        if(e.target === modal){
+            modal.classList.remove('open');
+            modalImg.src = "";
+            document.body.style.overflow = '';
+        }
+    }
+    // ESC
+    window.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+            modal.classList.remove('open');
+            modalImg.src = "";
+            document.body.style.overflow = '';
         }
     });
     </script>
