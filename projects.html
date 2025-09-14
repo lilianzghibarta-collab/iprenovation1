@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colour Renovation - Completed Projects</title>
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             margin: 0;
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -309,7 +312,7 @@
             <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" alt="Bright painted room"></div>
             <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Exterior wall painting"></div>
         </div>
-        <div class="contact-section">
+        <div class="contact-section" id="contact">
             <h2 id="contact-title">Contact</h2>
             <p id="contact-text">
                 <b>Email:</b> ipcolourrenovation@gmail.com<br>
@@ -324,41 +327,46 @@
             </p>
         </div>
     </div>
-
     <!-- Modal pentru imagine mărită -->
     <div id="imgModal" class="modal">
         <span class="close-modal" id="closeModalBtn">&times;</span>
         <img class="modal-content" id="modalImg" src="" alt="Enlarged project image">
     </div>
-
     <script>
-    // Mobile: Hide navbar when scrolling down, show only when scrolling up to top
-    let lastScrollTop = 0;
+    // Smooth scroll for anchor links in navbar
+    document.querySelectorAll('.nav-link').forEach(function(link) {
+        // Only scroll for internal sections (not external .html)
+        if (link.getAttribute('href').startsWith('#')) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').replace('#', '');
+                const target = document.getElementById(targetId);
+                if (target) {
+                    const navbar = document.getElementById('navbar');
+                    let navHeight = navbar ? navbar.offsetHeight : 0;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
+    });
+
+    // Hide/show navbar on scroll direction (up=show, down=hide) for all devices
+    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', function() {
-        if(window.innerWidth <= 900) {
-            let st = window.pageYOffset || document.documentElement.scrollTop;
-            if (st > lastScrollTop && st > 60) {
-                // scrolling down
-                navbar.style.transform = 'translateY(-100%)';
-            } else if (st < 10) {
-                // at the top
-                navbar.style.transform = 'translateY(0)';
-            } else if (st < lastScrollTop) {
-                // scrolling up
-                navbar.style.transform = 'translateY(0)';
-            }
-            lastScrollTop = st <= 0 ? 0 : st;
+        let st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop && st > 10) {
+            // scrolling down
+            navbar.style.transform = 'translateY(-100%)';
         } else {
-            // Desktop logic: hide only if scrolling down from top
-            const currentScroll = window.pageYOffset;
-            if (currentScroll > 10) {
-                navbar.style.transform = 'translateY(-100%)';
-                navbar.style.transition = 'transform 0.3s';
-            } else {
-                navbar.style.transform = 'translateY(0)';
-            }
+            // scrolling up or at top
+            navbar.style.transform = 'translateY(0)';
         }
+        lastScrollTop = st <= 0 ? 0 : st;
     });
 
     // MODAL logic pt. imagine mărită
