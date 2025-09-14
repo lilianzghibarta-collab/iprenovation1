@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Completed Projects - IP Painting</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(35, 35, 35, 0.77);
+            z-index: -1;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            background: rgba(20, 20, 20, 0.8);
+            color: #fff;
+            height: 70px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            padding: 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1.5;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .logo-section:hover {
+            opacity: 0.8;
+        }
+        .logo-svg {
+            width: 52px;
+            height: 52px;
+            background: none;
+        }
+        .company-name {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #ffd700;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            letter-spacing: 3px;
+            text-shadow: 1px 2px 8px #222;
+        }
+        .nav-section {
+            flex: 1;
+            text-align: center;
+            padding: 20px 0;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 1.1em;
+            letter-spacing: 1px;
+        }
+        .nav-section:hover {
+            background: rgba(60, 60, 60, 0.7);
+        }
+        .nav-link {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 0 auto;
+            background: rgba(44, 44, 44, 0.93);
+            border-radius: 16px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.4);
+            padding: 36px;
+            color: #eee;
+        }
+        h1, h2 {
+            color: #ffd700;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        p {
+            color: #ccc;
+            font-size: 1.09em;
+            margin-bottom: 24px;
+        }
+        .section {
+            margin-bottom: 50px;
+            scroll-margin-top: 100px;
+        }
+        .img-gallery {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+        .project-block {
+            width: 100%;
+            max-width: 320px;
+            margin-bottom: 22px;
+            background: rgba(30, 30, 30, 0.86);
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.38);
+            padding: 16px;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .project-block:hover {
+            box-shadow: 0 6px 32px rgba(255, 215, 0, 0.18);
+            transform: translateY(-3px) scale(1.03);
+        }
+        .project-img {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            background: #222;
+        }
+        .project-title {
+            color: #ffd700;
+            font-size: 1.22em;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .project-desc {
+            color: #ccc;
+            font-size: 1em;
+        }
+        /* Modal styles */
+        .modal-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(20,20,20,0.87);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.2s, visibility 0.2s;
+        }
+        .modal-bg.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-content {
+            background: #232323;
+            border-radius: 16px;
+            padding: 32px 26px 18px 26px;
+            max-width: 480px;
+            width: 90vw;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            text-align: center;
+            position: relative;
+            color: #eee;
+            animation: modal-in 0.2s;
+        }
+        @keyframes modal-in {
+            from { transform: scale(0.95) translateY(30px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .modal-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+        }
+        .modal-title {
+            color: #ffd700;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .modal-desc {
+            color: #ccc;
+            font-size: 1.05em;
+            margin-bottom: 20px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 12px; right: 20px;
+            font-size: 1.5em;
+            color: #ffd700;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+        .modal-close:hover {
+            color: #fff;
+        }
+        @media (max-width: 850px) {
+            .container { padding: 18px; }
+            .navbar { font-size: 0.95em; padding: 0 10px; }
+            .company-name { font-size: 1.2em; }
+            .logo-svg { width: 36px; height: 36px; }
+            .img-gallery { flex-direction: column; gap: 10px;}
+            .project-block { max-width: 100%; }
+            .project-img { max-width: 100%; }
+            .modal-img { max-width: 94vw; }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="navbar">
+        <div class="logo-section" id="logo-home">
+            <svg class="logo-svg" viewBox="0 0 64 64" fill="none">
+                <ellipse cx="32" cy="32" rx="30" ry="30" fill="#ffd700" opacity="0.7"/>
+                <rect x="18" y="38" width="28" height="10" rx="5" fill="#222"/>
+                <rect x="28" y="14" width="8" height="28" rx="4" fill="#377dff"/>
+                <ellipse cx="32" cy="16" rx="6" ry="4" fill="#fff"/>
+                <ellipse cx="32" cy="16" rx="6" ry="4" fill="#6dd47e" opacity="0.7"/>
+                <ellipse cx="34" cy="42" rx="3" ry="2" fill="#fff"/>
+            </svg>
+            <span class="company-name">IP Painting</span>
+        </div>
+        <div class="nav-section"><a class="nav-link" href="index.html#about" id="nav-about">About Us</a></div>
+        <div class="nav-section"><a class="nav-link" href="projects.html" id="nav-projects">Completed Projects</a></div>
+        <div class="nav-section"><a class="nav-link" href="index.html#comments" id="nav-comments">Real Client Comments</a></div>
+        <div class="nav-section"><a class="nav-link" href="index.html#contact" id="nav-contact">Contact Info</a></div>
+    </div>
+    <div class="container">
+        <div class="section" id="projects">
+            <h2>Completed Projects Portfolio</h2>
+            <p>
+                We have successfully completed over 500 projects! Here are 10 highlights from our portfolio. For more details, feel free to contact us!
+            </p>
+            <div class="img-gallery" id="project-gallery">
+                <!-- Projects will be loaded here by JS -->
+            </div>
+        </div>
+    </div>
+    <!-- Modal Popup -->
+    <div class="modal-bg" id="modal-bg">
+        <div class="modal-content" id="modal-content">
+            <button class="modal-close" id="modal-close" title="Close">&times;</button>
+            <img class="modal-img" id="modal-img" src="" alt="Project Image">
+            <div class="modal-title" id="modal-title"></div>
+            <div class="modal-desc" id="modal-desc"></div>
+        </div>
+    </div>
+    <script>
+        // Projects data
+        const projects = [
+            {
+                img: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80",
+                title: "Modern Wall Painting",
+                desc: "Contemporary painting for residential interiors, vibrant colors, smooth finish. <br><b>Location:</b> Bucharest"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80",
+                title: "Facade Restoration & Painting",
+                desc: "Full restoration and painting of building facades. Durable, weather-resistant finish.<br><b>Location:</b> Bucharest"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1503389152951-9c3e1c2c7f1c?auto=format&fit=crop&w=800&q=80",
+                title: "Office Decorative Painting",
+                desc: "Custom decorative effects for commercial spaces, including marble effect and color consultancy.<br><b>Location:</b> Bucharest"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80",
+                title: 'Central Office "Color Vision"',
+                desc: "Decorative painting, pearlescent effect, custom design for corporate headquarters.<br><b>Location:</b> Bucharest"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80",
+                title: 'Residential Project "Harmony"',
+                desc: "Exterior and interior painting, UV-resistant facade, vibrant colors.<br><b>Location:</b> Ilfov"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
+                title: "Living Room Renovation",
+                desc: "Modern living room painting, light tones, elegant finish.<br><b>Location:</b> Bucharest"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+                title: "Apartment Building Facade",
+                desc: "Facade painting for apartment block, quick and clean service.<br><b>Location:</b> Bucharest"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=800&q=80",
+                title: "Office Space Revamp",
+                desc: "Professional painting and design for office workspace.<br><b>Location:</b> Bucharest"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1519121784386-dc5c1d6a1476?auto=format&fit=crop&w=800&q=80",
+                title: "Decorative Wall Effects",
+                desc: "Creative decorative painting, marble and pearl effects.<br><b>Location:</b> Bucharest"
+            },
+            {
+                img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+                title: "Outdoor Patio Painting",
+                desc: "Exterior painting for patios and terraces, long-lasting protection.<br><b>Location:</b> Ilfov"
+            }
+        ];
+
+        // Render projects
+        const gallery = document.getElementById('project-gallery');
+        projects.forEach((proj, idx) => {
+            const block = document.createElement('div');
+            block.className = 'project-block';
+            block.setAttribute('data-idx', idx);
+            block.innerHTML = `
+                <img class="project-img" src="${proj.img}" alt="${proj.title}">
+                <div class="project-title">${proj.title}</div>
+                <div class="project-desc">${proj.desc}</div>
+            `;
+            gallery.appendChild(block);
+        });
+
+        // Modal logic
+        const modalBg = document.getElementById('modal-bg');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalClose = document.getElementById('modal-close');
+
+        gallery.addEventListener('click', function(e) {
+            let target = e.target;
+            while (target && !target.classList.contains('project-block')) {
+                target = target.parentElement;
+            }
+            if (!target) return;
+            const idx = target.getAttribute('data-idx');
+            const proj = projects[idx];
+            modalImg.src = proj.img;
+            modalImg.alt = proj.title;
+            modalTitle.innerText = proj.title;
+            modalDesc.innerHTML = proj.desc;
+            modalBg.classList.add('active');
+        });
+
+        modalClose.onclick = function() {
+            modalBg.classList.remove('active');
+        };
+        modalBg.onclick = function(e) {
+            if (e.target === modalBg) modalBg.classList.remove('active');
+        };
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") modalBg.classList.remove('active');
+        });
+
+        // Logo click -> Home
+        document.getElementById('logo-home').onclick = function() {
+            window.location.href = "index.html";
+        };
+    </script>
+</body>
+</html>
