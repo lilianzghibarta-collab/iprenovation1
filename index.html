@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colour Renovation - Interior & Exterior Painting Services</title>
+    <title>Colour Renovation - Completed Projects</title>
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
         body {
             margin: 0;
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -71,6 +69,10 @@
             transition: background 0.2s;
             font-size: 1.15em;
             letter-spacing: 1px;
+            border-right: 1px solid #333;
+        }
+        .nav-section:last-child {
+            border-right: none;
         }
         .nav-section:hover {
             background: rgba(60, 60, 60, 0.7);
@@ -83,111 +85,72 @@
             height: 100%;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 80px auto 0 auto;
-            background: rgba(44, 44, 44, 0.93);
-            border-radius: 18px;
+            background: rgba(36, 36, 36, 0.96);
+            border-radius: 24px;
             box-shadow: 0 8px 28px rgba(0,0,0,0.45);
-            padding: 54px 48px;
+            padding: 38px 24px 56px 24px;
             color: #eee;
         }
-        h1, h2 {
+        h2 {
             color: #ffd700;
             font-weight: 800;
-            margin-bottom: 18px;
-            font-size: 2.4em;
+            margin-bottom: 28px;
+            font-size: 2em;
             text-align: center;
             letter-spacing: 1px;
         }
-        #about-text {
-            font-size: 1.25em;
-            color: #eaeaea;
-            margin-bottom: 32px;
-            text-align: center;
-            line-height: 1.6;
-            max-width: 950px;
-            margin-left: auto;
-            margin-right: auto;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            margin: 0 auto;
         }
-        .section {
-            margin-bottom: 60px;
-            scroll-margin-top: 110px;
-        }
-        .img-gallery {
-            display: flex;
-            gap: 0px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-        .about-img {
-            width: 100%;
-            max-width: 800px;
-            min-width: 340px;
+        .gallery-item {
+            background: #1a1a1af8;
             border-radius: 18px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.45);
-            margin-bottom: 15px;
-            background: #222;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.40);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 240px;
+        }
+        .gallery-item:hover {
+            transform: scale(1.04);
+            box-shadow: 0 6px 32px rgba(0,0,0,0.65);
+        }
+        .gallery-img {
+            max-width: 360px;
+            width: 100%;
+            height: auto;
+            max-height: 260px;
             object-fit: cover;
             display: block;
-        }
-        .comment-block {
-            width: 100%;
-            max-width: 280px;
-            margin-bottom: 22px;
-        }
-        .comment {
-            background: rgba(30, 30, 30, 0.8);
-            border-left: 4px solid #ffd700;
-            padding: 16px;
-            border-radius: 8px;
-            font-style: italic;
-            margin-bottom: 6px;
-        }
-        .comments-list {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            margin-bottom: 18px;
-        }
-        .form-section {
-            background: rgba(34,34,34,0.92);
-            border-radius: 14px;
-            padding: 24px;
-            margin-bottom: 48px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
-        }
-        .form-section h2 {
-            color: #ffd700;
-            margin-bottom: 12px;
-        }
-        .form-section label {
-            display: block;
-            margin: 12px 0 6px 0;
-            color: #ffd700;
-        }
-        .form-section input, .form-section select, .form-section textarea {
-            width: 100%;
-            padding: 8px 10px;
-            border-radius: 7px;
-            border: 1px solid #888;
-            background: #232323;
-            color: #fff;
-        }
-        .form-section button {
-            margin-top: 18px;
-            background: #ffd700;
-            color: #222;
-            border: none;
-            padding: 10px 30px;
-            border-radius: 8px;
-            font-weight: bold;
+            border-radius: 18px;
+            transition: filter 0.22s;
+            filter: brightness(0.96) contrast(1.08) saturate(1.05);
             cursor: pointer;
-            font-size: 1em;
-            transition: background 0.2s;
         }
-        .form-section button:hover {
-            background: #e6be00;
+        .gallery-item:hover .gallery-img {
+            filter: brightness(1.02) contrast(1.1) saturate(1.12);
+        }
+        .contact-section {
+            margin-top: 56px;
+            text-align: center;
+            background: rgba(34,34,34,0.96);
+            border-radius: 16px;
+            padding: 22px 30px 17px 30px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.45);
+            width: 98vw;
+            max-width: 430px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 18px;
+            position: static;
         }
         .whatsapp-badge {
             display: inline-block;
@@ -201,6 +164,7 @@
             margin-left: 0;
             margin-top: 8px;
             transition: background 0.2s;
+            font-size: 1.15em;
         }
         .whatsapp-badge svg {
             vertical-align: middle;
@@ -210,62 +174,130 @@
         .whatsapp-badge:hover {
             background: #20ba5a;
         }
-        #whatsapp-float-btn {
-            position: fixed;
-            right: 22px;
-            bottom: 22px;
-            z-index: 9999;
-            background: #25d366;
-            color: #fff;
-            border-radius: 50%;
-            width: 68px;
-            height: 68px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-            cursor: pointer;
-            transition: background 0.2s, box-shadow 0.2s;
-            animation: whatsapp-vibrate 1.2s infinite;
-        }
-        #whatsapp-float-btn:hover {
-            background: #20ba5a;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-        }
-        #whatsapp-float-btn svg {
-            width: 38px;
-            height: 38px;
-            display: block;
-        }
-        @keyframes whatsapp-vibrate {
-          0% { transform: translate(0,0);}
-          10% { transform: translate(-2px,2px);}
-          20% { transform: translate(-3px,-2px);}
-          30% { transform: translate(3px,2px);}
-          40% { transform: translate(2px,-2px);}
-          50% { transform: translate(-2px,2px);}
-          60% { transform: translate(-3px,-2px);}
-          70% { transform: translate(3px,2px);}
-          80% { transform: translate(2px,-2px);}
-          90% { transform: translate(-2px,2px);}
-          100% { transform: translate(0,0);}
-        }
-        @media (max-width: 950px) {
-            .container { padding: 18px; }
-            h1, h2 { font-size: 1.5em; }
-            .company-name { font-size: 1.2em; }
-            .logo-svg { width: 36px; height: 36px; }
-            #about-text { font-size: 1em; }
-            .img-gallery { flex-direction: column; gap: 0px;}
-            .about-img { max-width: 98vw; min-width: 180px;}
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                align-items: stretch;
+                height: auto;
+                min-height: 0;
+                padding: 0 0;
+            }
+            .logo-section {
+                justify-content: center;
+                padding: 12px 0 0 0;
+            }
+            .nav-section {
+                border-right: none;
+                border-bottom: 1px solid #333;
+                font-size: 1.15em;
+                padding: 16px 0;
+                text-align: center;
+                width: 100%;
+            }
+            .nav-section:last-child {
+                border-bottom: none;
+            }
+            .company-name { font-size: 1.22em; letter-spacing: 1px;}
+            .logo-svg { width: 38px; height: 38px; }
+            .container { padding: 8px; }
+            h2 { font-size: 1.18em; }
+            .gallery-grid { grid-template-columns: 1fr; gap: 16px; }
+            .gallery-item { min-height: 160px;}
+            .gallery-img {
+                max-width: 320px;
+                width: 100%;
+                height: auto;
+                max-height: 180px;
+            }
+            .contact-section { font-size: 1em; max-width: 99vw; padding: 12px 4vw 12px 4vw; }
         }
         @media (max-width: 600px) {
-            .navbar { flex-direction: column; height: auto; padding: 0 8px; }
-            .nav-section { padding: 10px 0; font-size: 1em; }
-            .container { padding: 8px; margin: 20px auto 0 auto;}
-            h1, h2 { font-size: 1.1em;}
-            .logo-section { gap: 6px;}
-            .company-name { font-size: 0.95em; letter-spacing: 1px;}
+            .logo-section { gap: 5px;}
+            .company-name { font-size: 1em;}
+            .container { padding: 2px; }
+            h2 { font-size: 1em; }
+            .gallery-img {
+                max-width: 96vw;
+                max-height: 120px;
+            }
+            .contact-section { font-size: 0.95em; max-width: 99vw; padding: 6px 1vw 10px 1vw; }
+        }
+        /* MODAL styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100vw; height: 100vh;
+            background: rgba(30,30,30,0.88);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.open { display: flex; }
+        .modal-content {
+            max-width: 96vw;
+            max-height: 80vh;
+            border-radius: 18px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+            background: #222;
+            border: 3px solid #ffd700;
+            animation: modalZoomIn 0.3s;
+        }
+        @keyframes modalZoomIn {
+            from { transform: scale(0.8); opacity: 0;}
+            to { transform: scale(1); opacity: 1;}
+        }
+        .close-modal {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            color: #ffd700;
+            font-size: 2.4em;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2100;
+            background: rgba(30,30,30,0.93);
+            border-radius: 40px;
+            padding: 2px 16px 2px 16px;
+            border: 2px solid #ffd700;
+        }
+        @media (max-width: 900px) {
+            .modal-content { max-width: 99vw; max-height: 75vh; }
+            .close-modal { top: 8px; right: 8px; font-size: 2em; }
+        }
+        @media (max-width: 600px) {
+            .modal-content { max-width: 99vw; max-height: 50vh; }
+            .close-modal { font-size: 1.5em; }
+        }
+        /* Arrows for modal navigation */
+        .modal-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.6em;
+            color: #ffd700;
+            background: rgba(30,30,30,0.93);
+            border-radius: 36px;
+            padding: 8px 20px;
+            cursor: pointer;
+            z-index: 2100;
+            user-select: none;
+            border: 2px solid #ffd700;
+            transition: background 0.18s, color 0.18s;
+        }
+        .modal-arrow:hover {
+            background: #ffd700;
+            color: #222;
+        }
+        .modal-arrow.left { left: 18px; }
+        .modal-arrow.right { right: 18px; }
+        @media (max-width: 900px) {
+            .modal-arrow { font-size: 2em; padding: 5px 13px;}
+            .modal-arrow.left { left: 8px;}
+            .modal-arrow.right { right: 8px;}
+        }
+        @media (max-width: 600px) {
+            .modal-arrow { font-size: 1.3em; padding: 3px 8px;}
         }
     </style>
 </head>
@@ -285,19 +317,50 @@
                 <span class="company-name">Colour Renovation</span>
             </a>
         </div>
-        <div class="nav-section"><a class="nav-link" href="#about" id="nav-about">About Us</a></div>
+        <div class="nav-section"><a class="nav-link" href="index.html#about" id="nav-about">About Us</a></div>
         <div class="nav-section"><a class="nav-link" href="projects.html" id="nav-projects">Completed Projects</a></div>
-        <div class="nav-section"><a class="nav-link" href="#call-request" id="nav-call">Request a Call</a></div>
-        <div class="nav-section"><a class="nav-link" href="#comments" id="nav-comments">Customer Reviews</a></div>
-        <div class="nav-section"><a class="nav-link" href="#contact" id="nav-contact">Contact</a></div>
+        <div class="nav-section"><a class="nav-link" href="index.html#call-request" id="nav-call">Request a Call</a></div>
+        <div class="nav-section"><a class="nav-link" href="index.html#comments" id="nav-comments">Customer Reviews</a></div>
+        <div class="nav-section"><a class="nav-link" href="index.html#contact" id="nav-contact">Contact</a></div>
     </div>
     <div class="container">
-        <!-- restul conținutului index ... -->
+        <h2>Completed Projects - Interior & Exterior Painting</h2>
+        <div class="gallery-grid" id="gallery-grid">
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="Renovated living room"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=800&q=80" alt="Modern kitchen painting"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1503389152951-9c3b1cf1d93a?auto=format&fit=crop&w=800&q=80" alt="Bedroom fresh paint"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" alt="Hallway renovation"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" alt="Office painting"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80" alt="Kitchen painting"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Exterior house painting"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80" alt="Decorative wall painting"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=800&q=80" alt="Facade restoration"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1556912998-6e7766a2c87b?auto=format&fit=crop&w=800&q=80" alt="Fresh painted corridor"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" alt="Bright painted room"></div>
+            <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Exterior wall painting"></div>
+        </div>
+        <div class="contact-section" id="contact">
+            <h2 id="contact-title">Contact</h2>
+            <p id="contact-text">
+                <b>Email:</b> ipcolourrenovation@gmail.com<br>
+                <b>Phone:</b> 0874601219<br>
+                <b>Address:</b> Dublin, Ireland<br>
+                <b>Working hours:</b> Monday - Friday, 7:00 am - 6:00 pm<br>
+                <b>Saturday:</b> 7:00 am - 2:00 pm<br>
+                <a class="whatsapp-badge" href="https://wa.me/353874601219" target="_blank" title="WhatsApp us">
+                    <svg viewBox="0 0 32 32" width="22" height="22"><circle fill="#25d366" cx="16" cy="16" r="16"/><path fill="#fff" d="M23.4 8.6c-1.6-1.6-3.7-2.5-5.9-2.5-4.7 0-8.5 3.8-8.5 8.5 0 1.5.4 3.1 1.2 4.4l-1.3 4.7 4.8-1.3c1.2.7 2.6 1 4 1 4.7 0 8.5-3.8 8.5-8.5 0-2.2-.9-4.3-2.5-5.9zm-5.9 14.1c-1.3 0-2.6-.3-3.8-.9l-.3-.2-3.2.9.9-3.1-.2-.3c-.7-1.2-1-2.5-1-3.8 0-4 3.2-7.3 7.3-7.3 2 0 3.8.8 5.2 2.2 1.4 1.4 2.2 3.2 2.2 5.2 0 4-3.2 7.3-7.3 7.3zm4-5.5c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.6.1-.2.3-.7.7-.8.8-.2.2-.3.2-.6.1s-1.1-.4-2.1-1.1c-.8-.7-1.5-1.6-1.7-1.8-.2-.3 0-.5.1-.6.1-.1.2-.3.3-.4.1-.1.1-.2.2-.3.1-.2.1-.3 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.7 1.2 2.9c.2.2 2 3.1 4.9 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.2-.6 1.3-1.1.1-.5.1-.9.1-1.1 0-.2-.2-.3-.4-.4z"/></svg>
+                    WhatsApp
+                </a>
+            </p>
+        </div>
     </div>
-    <a id="whatsapp-float-btn" href="https://wa.me/353874601219" target="_blank" title="Contact us on WhatsApp">
-        <svg viewBox="0 0 32 32" width="38" height="38"><circle fill="#25d366" cx="16" cy="16" r="16"/><path fill="#fff" d="M23.4 8.6c-1.6-1.6-3.7-2.5-5.9-2.5-4.7 0-8.5 3.8-8.5 8.5 0 1.5.4 3.1 1.2 4.4l-1.3 4.7 4.8-1.3c1.2.7 2.6 1 4 1 4.7 0 8.5-3.8 8.5-8.5 0-2.2-.9-4.3-2.5-5.9zm-5.9 14.1c-1.3 0-2.6-.3-3.8-.9l-.3-.2-3.2.9.9-3.1-.2-.3c-.7-1.2-1-2.5-1-3.8 0-4 3.2-7.3 7.3-7.3 2 0 3.8.8 5.2 2.2 1.4 1.4 2.2 3.2 2.2 5.2 0 4-3.2 7.3-7.3 7.3zm4-5.5c-.2-.1-1.2-.6-1.4-.7-.2-.1-.4-.1-.6.1-.2.3-.7.7-.8.8-.2.2-.3.2-.6.1s-1.1-.4-2.1-1.1c-.8-.7-1.5-1.6-1.7-1.8-.2-.3 0-.5.1-.6.1-.1.2-.3.3-.4.1-.1.1-.2.2-.3.1-.2.1-.3 0-.5-.1-.1-.6-1.5-.8-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.7 1.2 2.9c.2.2 2 3.1 4.9 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.2-.6 1.3-1.1.1-.5.1-.9.1-1.1 0-.2-.2-.3-.4-.4z"/></svg>
-    </a>
-    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <!-- Modal pentru imagine mărită + arrows -->
+    <div id="imgModal" class="modal">
+        <span class="close-modal" id="closeModalBtn">&times;</span>
+        <span class="modal-arrow left" id="modalArrowLeft">&#8592;</span>
+        <img class="modal-content" id="modalImg" src="" alt="Enlarged project image">
+        <span class="modal-arrow right" id="modalArrowRight">&#8594;</span>
+    </div>
     <script>
     // Smooth scroll for anchor links in navbar
     document.querySelectorAll('.nav-link').forEach(function(link) {
@@ -332,8 +395,86 @@
         lastScrollTop = st <= 0 ? 0 : st;
     });
 
-    // QR code review posting logic etc. (rest unchanged)
-    // ... rest of JS ...
+    // MODAL logic pt. imagine mărită cu săgeți și swipe
+    const modal = document.getElementById('imgModal');
+    const modalImg = document.getElementById('modalImg');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalArrowLeft = document.getElementById('modalArrowLeft');
+    const modalArrowRight = document.getElementById('modalArrowRight');
+    const galleryImgs = Array.from(document.querySelectorAll('.gallery-img'));
+    let currentImgIndex = 0;
+
+    function showModalWithImg(index) {
+        if (index < 0) index = galleryImgs.length-1;
+        if (index >= galleryImgs.length) index = 0;
+        currentImgIndex = index;
+        modal.classList.add('open');
+        modalImg.src = galleryImgs[currentImgIndex].src;
+        document.body.style.overflow = 'hidden';
+    }
+
+    galleryImgs.forEach(function(img, idx){
+        img.addEventListener('click', function(){
+            showModalWithImg(idx);
+        });
+    });
+    closeModalBtn.onclick = function() {
+        modal.classList.remove('open');
+        modalImg.src = "";
+        document.body.style.overflow = '';
+    }
+    modalArrowLeft.onclick = function(e) {
+        e.stopPropagation();
+        showModalWithImg(currentImgIndex - 1);
+    }
+    modalArrowRight.onclick = function(e) {
+        e.stopPropagation();
+        showModalWithImg(currentImgIndex + 1);
+    }
+    // Keyboard navigation
+    window.addEventListener('keydown', function(e){
+        if (!modal.classList.contains('open')) return;
+        if(e.key === 'Escape'){
+            modal.classList.remove('open');
+            modalImg.src = "";
+            document.body.style.overflow = '';
+        }
+        if(e.key === 'ArrowLeft'){
+            showModalWithImg(currentImgIndex - 1);
+        }
+        if(e.key === 'ArrowRight'){
+            showModalWithImg(currentImgIndex + 1);
+        }
+    });
+    // Click pe fundalul modalului închide poza
+    modal.onclick = function(e){
+        if(e.target === modal){
+            modal.classList.remove('open');
+            modalImg.src = "";
+            document.body.style.overflow = '';
+        }
+    }
+
+    // TOUCH SWIPE for mobile (left/right image navigation)
+    let touchStartX = null;
+    modalImg.addEventListener('touchstart', function(e){
+        if (e.touches.length === 1) {
+            touchStartX = e.touches[0].clientX;
+        }
+    }, {passive:true});
+    modalImg.addEventListener('touchend', function(e){
+        if (touchStartX === null || e.changedTouches.length === 0) return;
+        let touchEndX = e.changedTouches[0].clientX;
+        let dx = touchEndX - touchStartX;
+        if (Math.abs(dx) > 40) {
+            if (dx < 0) {
+                showModalWithImg(currentImgIndex + 1); // swipe left
+            } else if (dx > 0) {
+                showModalWithImg(currentImgIndex - 1); // swipe right
+            }
+        }
+        touchStartX = null;
+    }, {passive:true});
     </script>
 </body>
 </html>
