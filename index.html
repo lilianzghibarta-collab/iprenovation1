@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Painting & Construction Services - IP Painting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Painting - Renovation Services</title>
     <style>
         body {
             margin: 0;
@@ -184,6 +185,7 @@
         .form-section button:hover {
             background: #e6be00;
         }
+        /* Responsive mobile & tablet design */
         @media (max-width: 950px) {
             .container { padding: 18px; }
             h1, h2 { font-size: 1.5em; }
@@ -191,7 +193,15 @@
             .logo-svg { width: 36px; height: 36px; }
             #about-text { font-size: 1em; }
             .img-gallery { flex-direction: column; gap: 0px;}
-            .about-img { max-width: 98vw; }
+            .about-img { max-width: 98vw; min-width: 180px;}
+        }
+        @media (max-width: 600px) {
+            .navbar { flex-direction: column; height: auto; padding: 0 8px; }
+            .nav-section { padding: 10px 0; font-size: 1em; }
+            .container { padding: 8px; margin: 20px auto 0 auto;}
+            h1, h2 { font-size: 1.1em;}
+            .logo-section { gap: 6px;}
+            .company-name { font-size: 0.95em; letter-spacing: 1px;}
         }
     </style>
 </head>
@@ -215,37 +225,37 @@
         <div class="nav-section"><a class="nav-link" href="#about" id="nav-about">About Us</a></div>
         <div class="nav-section"><a class="nav-link" href="projects.html" id="nav-projects">Completed Projects</a></div>
         <div class="nav-section"><a class="nav-link" href="#call-request" id="nav-call">Request a Call</a></div>
-        <div class="nav-section"><a class="nav-link" href="#comments" id="nav-comments">Real Client Comments</a></div>
-        <div class="nav-section"><a class="nav-link" href="#contact" id="nav-contact">Contact Info</a></div>
+        <div class="nav-section"><a class="nav-link" href="#comments" id="nav-comments">Customer Reviews</a></div>
+        <div class="nav-section"><a class="nav-link" href="#contact" id="nav-contact">Contact</a></div>
     </div>
     <div class="container">
         <div class="section" id="about">
             <h2 id="about-title">About Us</h2>
             <p id="about-text">
-                Welcome to <b>IP Painting</b>! We are a company with over 15 years of experience in painting and interior/exterior construction.<br>
-                We offer professional services for houses, apartments, offices, and commercial spaces. We use the latest materials, modern techniques, and guarantee spectacular results.<br>
-                Our team consists of dedicated craftsmen attentive to details and clients' wishes. From color consultancy to luxury finishes, we are always at your service!
+                Welcome to <b>IP Painting</b>! We are a company with over 15 years of experience in painting and interior/exterior renovation.<br>
+                We provide professional services for houses, apartments, offices, and commercial spaces. We use modern materials, up-to-date techniques, and guarantee spectacular results.<br>
+                Our team consists of skilled craftsmen, attentive to every detail and to our clients' wishes. From color consulting to luxury finishes, we are always at your service!
             </p>
             <div class="img-gallery">
-                <img class="about-img" src="https://i.imgur.com/CZAConr.jpg" alt="Renovation Before and After">
+                <img class="about-img" src="https://i.imgur.com/CZAConr.jpg" alt="Renovation before and after">
             </div>
         </div>
         <div class="section" id="comments">
-            <h2 id="comments-title">Real Client Comments</h2>
+            <h2 id="comments-title">Real Customer Reviews</h2>
             <p id="comments-text">
-                Client opinions matter to us! Read below some real comments from our clients about our painting services:
+                Customer opinions matter! Read below some real reviews about our services:
             </p>
             <div class="comments-list">
                 <div class="comment">
-                    "The IP Painting team exceeded our expectations for our modern living room. The walls look amazing!"<br>
+                    "The IP Painting team exceeded our expectations for our modern living room. The walls look fantastic!"<br>
                     <b>- Sarah M.</b>
                 </div>
                 <div class="comment">
-                    "Fast, clean, and friendly. Our facade was beautifully restored and painted."<br>
+                    "Fast, clean, and friendly. Our house facade was restored and painted perfectly."<br>
                     <b>- George R.</b>
                 </div>
                 <div class="comment">
-                    "Professional advice and perfect execution for our office space. Highly recommend IP Painting!"<br>
+                    "Professional advice and perfect execution for our office. I recommend IP Painting!"<br>
                     <b>- Elena D.</b>
                 </div>
                 <div class="comment">
@@ -257,28 +267,28 @@
                     <b>- Claudia T.</b>
                 </div>
                 <div class="comment">
-                    "Exterior painting was quick and the results are stunning. Great team!"<br>
+                    "Exterior painting was fast and the result is amazing. A great team!"<br>
                     <b>- Daniel S.</b>
                 </div>
             </div>
         </div>
-        <!-- Call Request Section -->
+        <!-- Call request section -->
         <div class="section form-section" id="call-request">
             <h2>Request a Call</h2>
             <form>
                 <label for="call-email">Email</label>
-                <input type="email" id="call-email" name="call-email" placeholder="Enter your email" required>
-                <label for="call-phone">Phone Number</label>
-                <input type="tel" id="call-phone" name="call-phone" placeholder="Enter your phone number" required>
+                <input type="email" id="call-email" name="call-email" placeholder="Your email" required>
+                <label for="call-phone">Phone</label>
+                <input type="tel" id="call-phone" name="call-phone" placeholder="Your phone number" required>
                 <label for="call-name">Name</label>
-                <input type="text" id="call-name" name="call-name" placeholder="Enter your name" required>
-                <label for="call-time">Preferred Callback Time</label>
+                <input type="text" id="call-name" name="call-name" placeholder="Your name" required>
+                <label for="call-time">Preferred time for call</label>
                 <input type="time" id="call-time" name="call-time" required>
-                <button type="submit">Request Call</button>
+                <button type="submit">Request a Call</button>
             </form>
         </div>
         <div class="section" id="contact">
-            <h2 id="contact-title">Contact Info</h2>
+            <h2 id="contact-title">Contact</h2>
             <p id="contact-text">
                 Want to work with us? Write or call us:<br>
                 <b>Email:</b> office@ippainting.com<br>
