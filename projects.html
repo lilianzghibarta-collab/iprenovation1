@@ -395,13 +395,12 @@
         lastScrollTop = st <= 0 ? 0 : st;
     });
 
-    // MODAL logic pt. imagine mărită cu săgeți
+    // MODAL logic pt. imagine mărită cu săgeți și swipe
     const modal = document.getElementById('imgModal');
     const modalImg = document.getElementById('modalImg');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const modalArrowLeft = document.getElementById('modalArrowLeft');
     const modalArrowRight = document.getElementById('modalArrowRight');
-    // Array with all images
     const galleryImgs = Array.from(document.querySelectorAll('.gallery-img'));
     let currentImgIndex = 0;
 
@@ -455,6 +454,27 @@
             document.body.style.overflow = '';
         }
     }
+
+    // TOUCH SWIPE for mobile (left/right image navigation)
+    let touchStartX = null;
+    modalImg.addEventListener('touchstart', function(e){
+        if (e.touches.length === 1) {
+            touchStartX = e.touches[0].clientX;
+        }
+    }, {passive:true});
+    modalImg.addEventListener('touchend', function(e){
+        if (touchStartX === null || e.changedTouches.length === 0) return;
+        let touchEndX = e.changedTouches[0].clientX;
+        let dx = touchEndX - touchStartX;
+        if (Math.abs(dx) > 40) {
+            if (dx < 0) {
+                showModalWithImg(currentImgIndex + 1); // swipe left
+            } else if (dx > 0) {
+                showModalWithImg(currentImgIndex - 1); // swipe right
+            }
+        }
+        touchStartX = null;
+    }, {passive:true});
     </script>
 </body>
 </html>
