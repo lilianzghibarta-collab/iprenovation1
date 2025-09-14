@@ -270,6 +270,30 @@
                     <b>- Daniel S.</b>
                 </div>
             </div>
+            <!-- QR code validation + camera scan for review posting -->
+            <div id="qr-section" style="margin-bottom:32px; text-align:center;">
+              <h2>Write a Review</h2>
+              <p>Only verified customers can post a review.<br>
+                Please enter your QR code below to unlock the comment form.</p>
+              <label for="qr-code">QR Code:</label>
+              <input type="text" id="qr-code" placeholder="Enter your QR code" style="padding:8px; border-radius:6px; border:1px solid #ccc; margin:0 10px;">
+              <button onclick="validateQR()" style="background:#ffd700; color:#222; border:none; padding:9px 22px; border-radius:8px; font-weight:bold; cursor:pointer;">Validate</button>
+              <br>
+              <div style="margin:14px 0;">
+                <button onclick="toggleQrScanner()" style="background:#377dff; color:#fff; border:none; padding:8px 20px; border-radius:8px; font-weight:bold; cursor:pointer;">Scan QR with Camera</button>
+              </div>
+              <div id="qr-reader" style="width:300px; margin:0 auto; display:none;"></div>
+              <div id="qr-message" style="margin-top:10px; color:#ffd700;"></div>
+            </div>
+            <div id="comment-form" style="display:none; margin-bottom:32px;">
+              <form id="customer-comment-form" style="text-align:center;">
+                <textarea name="comment" rows="4" cols="40" placeholder="Your review..." required style="border-radius:10px; border:1px solid #777; padding:10px; width:70%;"></textarea><br>
+                <input type="text" name="name" placeholder="Your name" required style="margin-top:10px; padding:7px; border-radius:8px; border:1px solid #777; width:45%;">
+                <br>
+                <button type="submit" style="margin-top:14px; background:#ffd700; color:#222; border:none; padding:9px 28px; border-radius:8px; font-weight:bold; cursor:pointer;">Send Review</button>
+              </form>
+              <div id="thanks-message" style="margin-top:16px; color:#6dd47e; display:none;">Thank you for your review!</div>
+            </div>
         </div>
         <!-- Call request section with Formspree integration -->
         <div class="section form-section" id="call-request">
@@ -298,6 +322,8 @@
             </p>
         </div>
     </div>
+    <!-- html5-qrcode library for QR code scan -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <script>
     // Hide navbar when scrolling down, show only at top of page
     const navbar = document.getElementById('navbar');
@@ -310,6 +336,73 @@
             navbar.style.transform = 'translateY(0)';
         }
     });
+
+    // QR code review posting logic
+    const validQRCodes = ["ABC123", "XYZ789", "IPPAINT2024"];
+    function validateQR() {
+      const code = document.getElementById('qr-code').value.trim();
+      const msg = document.getElementById('qr-message');
+      if (validQRCodes.includes(code)) {
+        document.getElementById('comment-form').style.display = 'block';
+        document.getElementById('qr-section').style.display = 'none';
+        msg.textContent = "";
+        stopQrScanner();
+      } else {
+        msg.textContent = "Invalid QR code. Please try again.";
+      }
+    }
+    document.getElementById('customer-comment-form').onsubmit = function(e) {
+      e.preventDefault();
+      document.getElementById('thanks-message').style.display = 'block';
+      setTimeout(function(){
+        document.getElementById('thanks-message').style.display = 'none';
+        document.getElementById('customer-comment-form').reset();
+      }, 3000);
+    };
+
+    // QR scanner logic
+    let qrScanner = null;
+    function toggleQrScanner() {
+      const reader = document.getElementById('qr-reader');
+      if (reader.style.display === "none") {
+        reader.style.display = "block";
+        startQrScanner();
+      } else {
+        stopQrScanner();
+        reader.style.display = "none";
+      }
+    }
+    function startQrScanner() {
+      if (qrScanner) return;
+      qrScanner = new Html5Qrcode("qr-reader");
+      qrScanner.start(
+        { facingMode: "environment" },
+        {
+          fps: 10,
+          qrbox: 250
+        },
+        qrCodeMessage => {
+          document.getElementById('qr-code').value = qrCodeMessage;
+          validateQR();
+        },
+        errorMessage => {
+          // Ignore errors for now
+        }
+      ).catch(err => {
+        document.getElementById('qr-message').textContent = "Camera error: " + err;
+      });
+    }
+    function stopQrScanner() {
+      if (qrScanner) {
+        qrScanner.stop().then(() => {
+          qrScanner.clear();
+          qrScanner = null;
+          document.getElementById('qr-reader').style.display = "none";
+        }).catch(err => {
+          // ignore stop errors
+        });
+      }
+    }
     </script>
 </body>
 </html>
