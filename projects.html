@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colour Renovation - Completed Projects</title>
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
         body {
             margin: 0;
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -176,7 +174,6 @@
         .whatsapp-badge:hover {
             background: #20ba5a;
         }
-        /* Navbar mobile: permanent, vertical */
         @media (max-width: 900px) {
             .navbar {
                 flex-direction: column;
@@ -272,6 +269,36 @@
             .modal-content { max-width: 99vw; max-height: 50vh; }
             .close-modal { font-size: 1.5em; }
         }
+        /* Arrows for modal navigation */
+        .modal-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.6em;
+            color: #ffd700;
+            background: rgba(30,30,30,0.93);
+            border-radius: 36px;
+            padding: 8px 20px;
+            cursor: pointer;
+            z-index: 2100;
+            user-select: none;
+            border: 2px solid #ffd700;
+            transition: background 0.18s, color 0.18s;
+        }
+        .modal-arrow:hover {
+            background: #ffd700;
+            color: #222;
+        }
+        .modal-arrow.left { left: 18px; }
+        .modal-arrow.right { right: 18px; }
+        @media (max-width: 900px) {
+            .modal-arrow { font-size: 2em; padding: 5px 13px;}
+            .modal-arrow.left { left: 8px;}
+            .modal-arrow.right { right: 8px;}
+        }
+        @media (max-width: 600px) {
+            .modal-arrow { font-size: 1.3em; padding: 3px 8px;}
+        }
     </style>
 </head>
 <body>
@@ -298,7 +325,7 @@
     </div>
     <div class="container">
         <h2>Completed Projects - Interior & Exterior Painting</h2>
-        <div class="gallery-grid">
+        <div class="gallery-grid" id="gallery-grid">
             <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=800&q=80" alt="Renovated living room"></div>
             <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=800&q=80" alt="Modern kitchen painting"></div>
             <div class="gallery-item"><img class="gallery-img" src="https://images.unsplash.com/photo-1503389152951-9c3b1cf1d93a?auto=format&fit=crop&w=800&q=80" alt="Bedroom fresh paint"></div>
@@ -327,15 +354,16 @@
             </p>
         </div>
     </div>
-    <!-- Modal pentru imagine mărită -->
+    <!-- Modal pentru imagine mărită + arrows -->
     <div id="imgModal" class="modal">
         <span class="close-modal" id="closeModalBtn">&times;</span>
+        <span class="modal-arrow left" id="modalArrowLeft">&#8592;</span>
         <img class="modal-content" id="modalImg" src="" alt="Enlarged project image">
+        <span class="modal-arrow right" id="modalArrowRight">&#8594;</span>
     </div>
     <script>
     // Smooth scroll for anchor links in navbar
     document.querySelectorAll('.nav-link').forEach(function(link) {
-        // Only scroll for internal sections (not external .html)
         if (link.getAttribute('href').startsWith('#')) {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -360,25 +388,35 @@
     window.addEventListener('scroll', function() {
         let st = window.pageYOffset || document.documentElement.scrollTop;
         if (st > lastScrollTop && st > 10) {
-            // scrolling down
             navbar.style.transform = 'translateY(-100%)';
         } else {
-            // scrolling up or at top
             navbar.style.transform = 'translateY(0)';
         }
         lastScrollTop = st <= 0 ? 0 : st;
     });
 
-    // MODAL logic pt. imagine mărită
+    // MODAL logic pt. imagine mărită cu săgeți
     const modal = document.getElementById('imgModal');
     const modalImg = document.getElementById('modalImg');
     const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalArrowLeft = document.getElementById('modalArrowLeft');
+    const modalArrowRight = document.getElementById('modalArrowRight');
+    // Array with all images
+    const galleryImgs = Array.from(document.querySelectorAll('.gallery-img'));
+    let currentImgIndex = 0;
 
-    document.querySelectorAll('.gallery-img').forEach(function(img){
+    function showModalWithImg(index) {
+        if (index < 0) index = galleryImgs.length-1;
+        if (index >= galleryImgs.length) index = 0;
+        currentImgIndex = index;
+        modal.classList.add('open');
+        modalImg.src = galleryImgs[currentImgIndex].src;
+        document.body.style.overflow = 'hidden';
+    }
+
+    galleryImgs.forEach(function(img, idx){
         img.addEventListener('click', function(){
-            modal.classList.add('open');
-            modalImg.src = this.src;
-            document.body.style.overflow = 'hidden';
+            showModalWithImg(idx);
         });
     });
     closeModalBtn.onclick = function() {
@@ -386,6 +424,29 @@
         modalImg.src = "";
         document.body.style.overflow = '';
     }
+    modalArrowLeft.onclick = function(e) {
+        e.stopPropagation();
+        showModalWithImg(currentImgIndex - 1);
+    }
+    modalArrowRight.onclick = function(e) {
+        e.stopPropagation();
+        showModalWithImg(currentImgIndex + 1);
+    }
+    // Keyboard navigation
+    window.addEventListener('keydown', function(e){
+        if (!modal.classList.contains('open')) return;
+        if(e.key === 'Escape'){
+            modal.classList.remove('open');
+            modalImg.src = "";
+            document.body.style.overflow = '';
+        }
+        if(e.key === 'ArrowLeft'){
+            showModalWithImg(currentImgIndex - 1);
+        }
+        if(e.key === 'ArrowRight'){
+            showModalWithImg(currentImgIndex + 1);
+        }
+    });
     // Click pe fundalul modalului închide poza
     modal.onclick = function(e){
         if(e.target === modal){
@@ -394,14 +455,6 @@
             document.body.style.overflow = '';
         }
     }
-    // ESC
-    window.addEventListener('keydown', function(e){
-        if(e.key === 'Escape'){
-            modal.classList.remove('open');
-            modalImg.src = "";
-            document.body.style.overflow = '';
-        }
-    });
     </script>
 </body>
 </html>
