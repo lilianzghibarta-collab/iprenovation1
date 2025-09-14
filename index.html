@@ -422,16 +422,19 @@
         }
     });
 
-    // Hide navbar when scrolling down, show only at top of page
+    // Hide/show navbar on scroll direction (up=show, down=hide) for all devices
+    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset;
-        if (currentScroll > 10) {
+        let st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop && st > 10) {
+            // scrolling down
             navbar.style.transform = 'translateY(-100%)';
-            navbar.style.transition = 'transform 0.3s';
         } else {
+            // scrolling up or at top
             navbar.style.transform = 'translateY(0)';
         }
+        lastScrollTop = st <= 0 ? 0 : st;
     });
 
     // QR code review posting logic
