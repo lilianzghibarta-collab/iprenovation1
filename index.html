@@ -189,6 +189,48 @@
         .form-section button:hover {
             background: #e6be00;
         }
+        .quick-form-section {
+            background: #232323;
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 48px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quick-form-section h2 {
+            color: #ffd700;
+            margin-bottom: 12px;
+        }
+        .quick-form-section label {
+            display: block;
+            margin: 12px 0 6px 0;
+            color: #ffd700;
+        }
+        .quick-form-section input, .quick-form-section select, .quick-form-section textarea {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 7px;
+            border: 1px solid #888;
+            background: #232323;
+            color: #fff;
+        }
+        .quick-form-section button {
+            margin-top: 18px;
+            background: #ffd700;
+            color: #222;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.2s;
+        }
+        .quick-form-section button:hover {
+            background: #e6be00;
+        }
         .whatsapp-badge {
             display: inline-block;
             padding: 6px 18px 6px 10px;
@@ -344,7 +386,7 @@
         </div>
         <div class="nav-section"><a class="nav-link" href="#about" id="nav-about">About Us</a></div>
         <div class="nav-section"><a class="nav-link" href="projects.html" id="nav-projects">Completed Projects</a></div>
-        <div class="nav-section"><a class="nav-link" href="#call-request" id="nav-call">Request a Call</a></div>
+        <div class="nav-section"><a class="nav-link" href="#quick-form" id="nav-quickform">Quick Paint Quote</a></div>
         <div class="nav-section"><a class="nav-link" href="#comments" id="nav-comments">Customer Reviews</a></div>
         <div class="nav-section"><a class="nav-link" href="#contact" id="nav-contact">Contact</a></div>
     </div>
@@ -415,22 +457,30 @@
               </form>
               <div id="thanks-message" style="margin-top:16px; color:#6dd47e; display:none;">Thank you for your review!</div>
             </div>
-        </div>
-        <div class="section form-section" id="call-request">
-            <h2>Request a Call</h2>
-            <form action="https://formspree.io/f/mwpnjkwy" method="POST">
-                <label for="call-email">Email</label>
-                <input type="email" id="call-email" name="call-email" placeholder="Your email" required>
-                <label for="call-phone">Phone</label>
-                <input type="tel" id="call-phone" name="call-phone" placeholder="Your phone number" required>
-                <label for="call-name">Name</label>
-                <input type="text" id="call-name" name="call-name" placeholder="Your name" required>
-                <label for="call-time">Preferred time for call</label>
-                <input type="time" id="call-time" name="call-time" required>
-                <label for="call-message">What work do you need or what question do you have for us?</label>
-                <textarea id="call-message" name="call-message" rows="4" placeholder="Describe your project, request, or question..." style="border-radius:10px; border:1px solid #777; padding:10px; width:100%;"></textarea>
-                <button type="submit">Request a Call</button>
-            </form>
+            <!-- Quick Paint Quote Form inserted here -->
+            <div class="quick-form-section" id="quick-form">
+                <h2>Quick Interior/Exterior Paint Request</h2>
+                <form action="mailto:ipcolourrenovation@gmail.com" method="POST">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    
+                    <label for="type">Paint Type:</label>
+                    <select id="type" name="type" required>
+                        <option value="">Choose...</option>
+                        <option value="interior">Interior Painting</option>
+                        <option value="exterior">Exterior Painting</option>
+                        <option value="both">Both</option>
+                    </select>
+                    
+                    <label for="details">Short details (surface, rooms, preferred colors):</label>
+                    <textarea id="details" name="details" rows="3"></textarea>
+                    
+                    <button type="submit">Send Quick Request</button>
+                </form>
+            </div>
         </div>
         <div class="section" id="contact">
             <h2 id="contact-title">Contact</h2>
